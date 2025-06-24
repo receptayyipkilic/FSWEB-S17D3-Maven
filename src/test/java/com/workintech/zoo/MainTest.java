@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ResultAnalyzer.class)
+@ExtendWith(com.workintech.s17d2.ResultAnalyzer.class)
 class MainTest {
 
 
@@ -61,7 +61,7 @@ class MainTest {
         assertEquals(2.0, kangaroo.getHeight());
         assertEquals(85.0, kangaroo.getWeight());
         assertEquals("Male", kangaroo.getGender());
-        assertEquals(false, kangaroo.getIsAggressive());
+        assertEquals(false, kangaroo.isAggressive());
     }
 
     @Test
@@ -74,7 +74,7 @@ class MainTest {
         kangaroo.setHeight(1.8);
         kangaroo.setWeight(70.0);
         kangaroo.setGender("Female");
-        kangaroo.setIsAggressive(true);
+        kangaroo.setAggressive(true);
 
 
         assertEquals(2, kangaroo.getId());
@@ -82,7 +82,7 @@ class MainTest {
         assertEquals(1.8, kangaroo.getHeight());
         assertEquals(70.0, kangaroo.getWeight());
         assertEquals("Female", kangaroo.getGender());
-        assertTrue(kangaroo.getIsAggressive());
+        assertTrue(kangaroo.isAggressive());
     }
 
     @Test
@@ -140,7 +140,7 @@ class MainTest {
         long now = System.currentTimeMillis();
 
 
-        ZooErrorResponse errorResponse = new ZooErrorResponse(404, "Not Found", now);
+        ZooErrorResponse errorResponse = new ZooErrorResponse("Not Found", 404, now);
 
 
         assertEquals(404, errorResponse.getStatus());
